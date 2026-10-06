@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { deletePlaceById, editPlaceById } from "../api/places";
 import Button from "./Button";
 import Input from "./Input";
+import HoldToDeleteBtn from "./HoldToDeleteBtn";
 
 const Place = ({ place, onDelete, onEditPlace }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -70,6 +71,7 @@ const Place = ({ place, onDelete, onEditPlace }) => {
           <div className="mb-4">
             <div className="flex items-center gap-2 mb-1.5">
               <span className="text-sm">📍</span>
+
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                 Destination
               </span>
@@ -87,9 +89,26 @@ const Place = ({ place, onDelete, onEditPlace }) => {
             <Button onClick={handleEditBtnClick} variant="edit">
               Edit
             </Button>
-            <Button onClick={handleDelete} variant="delete">
-              Delete
-            </Button>
+            <HoldToDeleteBtn
+              doneLabel="Deleted"
+              backgroundColor="#75303c"
+              fillColor="#EF4444"
+              textColor="#f5f5f5"
+              fillTextColor="#ffffff"
+              size="md"
+              radius={18}
+              fillDirection="up"
+              holdTime={2000}
+              releaseTime={200}
+              pressScale={0.97}
+              wave
+              waveAmplitude={7}
+              glow
+              resetAfter={1200}
+              onHold={handleDelete}
+            >
+              Hold to delete
+            </HoldToDeleteBtn>
           </div>
         </>
       )}
